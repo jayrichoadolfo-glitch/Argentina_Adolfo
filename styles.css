@@ -627,3 +627,34 @@ body.alt-page4 .item img {
         text-align: center;
     }
 }
+
+body.alt-page2 .mas-container {
+    display: grid;
+    /* CHANGE 1: Use min-height so the page can grow to fit the footer */
+    min-height: 100vh; 
+    height: auto;      
+    gap: 15px;
+    padding: 15px;
+    grid-template-columns: 250px 1fr 1fr 1fr 1fr;
+    /* CHANGE 2: Add a 4th row (auto) at the bottom for the footer */
+    grid-template-rows: 80px 1.5fr 1fr auto; 
+    grid-template-areas: 
+        "side head head head head"
+        "side txt  txt  txt  list"
+        "side op1  op2  op3  op4"
+        "foot foot foot foot foot"; /* New Footer area */
+}
+
+/* CHANGE 3: Assign your footer to the new area */
+.main-footer {
+    grid-area: foot;
+}
+
+/* This stops the text from spilling out of the blue boxes */
+body.alt-page2 [class^="op-"] {
+    background: #68a5dc;
+    padding: 15px;
+    height: auto; /* Let the box grow with the text */
+    display: flex;
+    flex-direction: column;
+}
