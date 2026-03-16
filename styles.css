@@ -1,0 +1,629 @@
+/* --- SHARED STYLES --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', sans-serif; height: 100vh; background: #f4f7f6; }
+
+/* --- THE MASTER GRID (MAIN PAGE) --- */
+/* This only works if you DO NOT have the class "sub-page" on the body */
+body:not(.sub-page) .mas-container {
+    display: grid;
+    height: 100vh;
+    gap: 12px;
+    padding: 12px;
+    grid-template-columns: 250px 1.5fr 1fr 1fr;
+    grid-template-rows: 100px 1fr 1fr auto;
+    grid-template-areas: 
+        "box-1 box-2 box-2 box-2"
+        "box-1 box-5 box-5 box-3"
+        "box-1 box-5 box-5 box-4"
+        "box-1 box-6 box-7 box-8"
+        "foot  foot  foot  foot";
+}
+
+/* --- THE REVIEW PAGE GRID --- */
+/* This only works if you HAVE class="sub-page" on the body */
+body.sub-page .mas-container {
+    display: grid;
+    height: 100vh;
+    gap: 12px;
+    padding: 12px;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 100px 1fr;
+    grid-template-areas: 
+        "box-1 box-2"
+        "box-1 box-9"
+        "foot  foot"; /* box-9 is your review area */
+}
+
+/* --- AREA ASSIGNMENTS --- */
+.sidebar   { grid-area: box-1; background: #68a5dc; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; align-items: center; }
+.header    { grid-area: box-2; background: #2c3e50; color: #68a5dc; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; border-radius: 8px; }
+
+/* Main page area */
+.text      { grid-area: box-5; background: #fff; padding: 25px; border-radius: 8px; overflow-y: auto; }
+
+/* Review page area (Matches your text1 class) */
+.text1     { grid-area: box-9; background: #fff; padding: 25px; border-radius: 8px; overflow-y: auto; }
+
+/* Other main page boxes */
+.pres { grid-area: box-3; background: #fffbe6; border-radius: 8px; }
+.vice-pres { grid-area: box-4; background: #fffbe6; border-radius: 8px; }
+.op-1 { grid-area: box-6; background: #68a5dc; border-radius: 8px; }
+.op-2 { grid-area: box-7; background: #68a5dc; border-radius: 8px; }
+.op-3 { grid-area: box-8; background: #68a5dc; border-radius: 8px; }
+.op-1, .op-2, .op-3 {
+    grid-row: 4; /* Ensures they all stay on the bottom row */
+    background: #68a5dc;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Makes them all the same height */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.op-1 img, .op-2 img, .op-3 img {
+    width: 100%;
+    height: 200px; /* Force a consistent height for all three */
+    object-fit: cover; /* This is the "magic" that prevents stretching */
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.op-1 p, .op-2 p, .op-3 p {
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+/* --- DROPDOWNS --- */
+.nav-group { display: flex; gap: 10px; }
+.dropdown { position: relative; }
+.button { background: transparent; color: #68a5dc; border: 2px solid #68a5dc; padding: 8px 15px; cursor: pointer; border-radius: 4px; font-weight: bold; }
+.dropdown .content { display: none; position: absolute; top: 100%; left: 0; background: white; min-width: 200px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); z-index: 1000; }
+.dropdown:hover .content { display: block; }
+.dropdown .content a { color: #333; padding: 12px; text-decoration: none; display: block; border-bottom: 1px solid #eee; }
+.dropdown .content a:hover { background: #68a5dc; color: white; }
+
+/* This is the container box (box-9) */
+.text1 { 
+    grid-area: box-9; 
+    background-color: #68a5dc; /* Your light blue background */
+    padding: 40px; 
+    border-radius: 8px; 
+    overflow-y: auto; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the white form card */
+}
+
+/* We create a 'Card' for the form so it stands out against the blue */
+.review-form { 
+    background: #ffffff; 
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* Adds depth to prevent flatness */
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; 
+    width: 100%;
+    max-width: 600px; /* Keeps the form at a decent professional width */
+}
+
+/* Making your text readable on the blue background */
+.text1 h2 {
+    color: white;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* This ensures the 'Go Home' link looks identical to the buttons */
+a.button {
+    text-decoration: none;    /* Removes the blue underline */
+    display: inline-block;    /* Allows padding to work correctly */
+    text-align: center;
+    line-height: 1;           /* Centers text vertically */
+}
+
+/* Optional: Special spacing for the Home button if it's in the sidebar */
+.home-btn {
+    margin-bottom: 20px;
+    width: 90%;               /* Makes it fit nicely in the sidebar width */
+}
+
+/* Hover effect to match your other buttons */
+a.button:hover {
+    background-color: rgba(104, 165, 220, 0.1); 
+    border-color: #2c3e50;
+    color: #2c3e50;
+}
+
+.text1 p {
+    color: white;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+/* Styling the labels inside the white card */
+.review-form label {
+    color: #2c3e50;
+    font-weight: bold;
+    margin-bottom: -5px;
+}
+
+/* --- RESERVATION PAGE SPECIFIC DESIGN --- */
+
+/* Map the booking-section to the main content area of the sub-page grid */
+body.sub-page .booking-section {
+    grid-area: box-9;
+    background-color: #68a5dc; /* Light blue background for the entire area */
+    padding: 40px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the white cards */
+    gap: 30px; /* Space between the booking card and bucket list card */
+}
+
+/* Style the Reservation and Bucket List as professional white cards */
+.reservation-box, .list-maker {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* Adds depth */
+    width: 100%;
+    max-width: 650px; /* Professional standard width */
+}
+
+/* Typography for the cards */
+.reservation-box h3, .list-maker h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #68a5dc;
+    padding-bottom: 10px;
+}
+
+/* Form Layout inside the cards */
+.reservation-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.reservation-box label {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: -10px;
+}
+
+/* Reusing your professional input styles */
+.reservation-box input, 
+.reservation-box select, 
+.list-maker input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: inherit;
+}
+
+/* Bucket List Specifics */
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.add-btn {
+    background-color: #2c3e50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#myUL {
+    list-style-type: none;
+    padding: 0;
+}
+
+#myUL li {
+    padding: 12px;
+    background: #f9f9f9;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    color: #2c3e50;
+    display: flex;
+    justify-content: space-between;
+}
+
+#myUL li.checked {
+    text-decoration: line-through;
+    color: #888;
+    background: #eee;
+}
+
+/* --- THE THIRD LAYOUT (Drawing Version) --- */
+body.alt-page .mas-container {
+    display: grid;
+    height: 100vh;
+    gap: 12px;
+    padding: 12px;
+    /* Sidebar is 250px, then 3 equal columns for the middle content */
+    grid-template-columns: 250px 1fr 1fr 1fr;
+    /* Fixed Header height, flexible middle, slightly larger bottom text area */
+    grid-template-rows: 100px 1fr 1.2fr; 
+    grid-template-areas: 
+        "side head head head"
+        "side op1  op2  op3"
+        "side txt  txt  txt" 
+        "foot foot foot foot";
+}
+
+/* Mapping the classes to the new Drawing Grid */
+body.alt-page .sidebar { grid-area: side; }
+body.alt-page .header  { grid-area: head; }
+
+/* The 3 Middle Boxes (op-1, op-2, op-3) */
+body.alt-page .op-1    { grid-area: op1; background: #68a5dc; color: white; padding: 15px; border-radius: 8px; }
+body.alt-page .op-2    { grid-area: op2; background: #68a5dc; color: white; padding: 15px; border-radius: 8px; }
+body.alt-page .op-3    { grid-area: op3; background: #68a5dc; color: white; padding: 15px; border-radius: 8px; }
+
+/* The Wide Bottom Text Area (text-1) */
+body.alt-page .text-1  { 
+    grid-area: txt; 
+    background: #fffbe6; 
+    padding: 25px; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* --- THE THIRD LAYOUT (Specific for Glacier/Iguazú) --- */
+body.alt-page1 .mas-container {
+    display: grid;
+    height: 100vh;
+    gap: 15px;
+    padding: 15px;
+    grid-template-columns: 250px 1fr 1fr 500px; /* Last column is for the floating list */
+    grid-template-rows: 80px 1.5fr 1fr; 
+    align-items: stretch;
+    grid-template-areas: 
+        "side head head head"
+        "side txt  txt  list"
+        "side op1  op2  op3" 
+        "foot foot foot foot";
+}
+
+/* Assignments */
+body.alt-page1 .sidebar { grid-area: side; background: #68a5dc;}
+body.alt-page1 .header  { grid-area: head; background: #2c3e50; display: flex; align-items: center; padding: 0 20px; border-radius: 8px; }
+body.alt-page1 .text-1  { grid-area: txt;  background: #fff; padding: 25px; border-radius: 8px;}
+
+/* The Floating Alert Box (Pre-Visit List) */
+body.alt-page1 .pres {
+    grid-area: list;
+    background: #fffbe6; /* Professional "Warning/Tip" yellow */
+    border-left: 5px solid #2c3e50;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    font-size: 0.9rem;
+}
+
+/* The 3 Activity Boxes */
+body.alt-page1 .op-1 { grid-area: op1; background: #68a5dc; padding: 15px; border-radius: 8px; }
+body.alt-page1 .op-2 { grid-area: op2; background: #68a5dc; padding: 15px; border-radius: 8px; }
+body.alt-page1 .op-3 { grid-area: op3; background: #68a5dc; padding: 15px; border-radius: 8px; }
+
+/* Image styling for activities */
+body.alt-page1 [class^="op-"] img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+/* Targets images in op-1, op-2, and op-3 specifically */
+body.alt-page1 [class^="op-"] img {
+    width: 100%;       /* Makes the image fill the width of the blue box */
+    height: 350px;     /* Change this number to make them taller or shorter */
+    object-fit: cover; /* Crops the image to fit the dimensions perfectly */
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+.item {
+    grid-area: txt; /* Maps to the 'txt' area in your alt-page1 grid */
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    
+    /* Centering Logic */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center; /* Centers the text paragraphs and headers */
+}
+
+.item img {
+    max-width: 100%; /* Ensures it doesn't overflow on small screens */
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15); /* Adds a professional shadow */
+    margin-bottom: 20px;
+}
+
+.item p {
+    max-width: 800px; /* Prevents text lines from getting too long to read */
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+/* --- THE UPDATED FOURTH LAYOUT (alt-page2) --- */
+body.alt-page2 .mas-container {
+    display: grid;
+    height: 100vh;
+    gap: 15px;
+    padding: 15px;
+    /* Sidebar (250px) + 4 equal columns for the activities */
+    grid-template-columns: 250px 1fr 1fr 1fr 1fr;
+    /* Header, Middle (Text + List), Bottom (4 Ops) */
+    grid-template-rows: 80px 1.5fr 1fr; 
+    grid-template-areas: 
+        "side head head head head"
+        "side txt  txt  txt  list"
+        "side op1  op2  op3  op4" 
+        "foot foot foot foot foot";
+}
+
+/* Mapping Classes */
+body.alt-page2 .sidebar { grid-area: side; background: #68a5dc; overflow-y: auto; }
+body.alt-page2 .header  { grid-area: head; background: #2c3e50; border-radius: 8px; }
+body.alt-page2 .item    { grid-area: txt;  background: #fff; padding: 25px; border-radius: 8px; }
+body.alt-page2 .pres    { grid-area: list; background: #fffbe6; padding: 20px; border-radius: 8px; overflow-y: auto; border-left: 5px solid #2c3e50; }
+
+/* Uniform Activity Boxes */
+body.alt-page2 [class^="op-"] {
+    background: #68a5dc;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+body.alt-page2 .op-1 { grid-area: op1; }
+body.alt-page2 .op-2 { grid-area: op2; }
+body.alt-page2 .op-3 { grid-area: op3; }
+body.alt-page2 .op-4 { grid-area: op4; }
+
+/* Ensuring all activity images are identical in size */
+body.alt-page2 [class^="op-"] img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    overflow-y: auto;
+}
+body.alt-page2 [class^="op-"] img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin: 10px 0;
+    overflow-y: auto;
+}
+/* Targets images in op-1, op-2, and op-3 specifically */
+body.alt-page2 [class^="op-"] img {
+    width: 100%;       /* Makes the image fill the width of the blue box */
+    height: 320px;     /* Change this number to make them taller or shorter */
+    object-fit: cover; /* Crops the image to fit the dimensions perfectly */
+    border-radius: 4px;
+    margin-bottom: 12px;
+    overflow-y: auto;
+}
+
+/* --- THE ASADO LAYOUT (alt-page3) --- */
+body.alt-page3 .mas-container {
+    display: grid;
+    height: 100vh;
+    gap: 15px;
+    padding: 15px;
+    /* Sidebar, flexible main area, and fixed right panel */
+    grid-template-columns: 250px 1fr 300px;
+    grid-template-rows: 80px 1fr; 
+    grid-template-areas: 
+        "side head head"
+        "side txt  list" 
+        "foot foot foot";
+}
+
+/* Mapping the Asado Sections */
+body.alt-page3 .sidebar { grid-area: side; background: #68a5dc;}
+body.alt-page3 .header  { grid-area: head; background: #2c3e50; border-radius: 8px; }
+body.alt-page3 .item    { 
+    grid-area: txt; 
+    background: #fff; 
+    padding: 25px; 
+    border-radius: 8px; 
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the Asado image and text */
+    text-align: center;
+}
+body.alt-page3 .pres    { 
+    grid-area: list; 
+    background: #fffbe6; 
+    padding: 20px; 
+    border-radius: 8px;  
+    border-left: 5px solid #e67e22; /* Orange accent for food theme */
+}
+
+/* Centering the main image */
+body.alt-page3 .item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* --- THE TORRONTÉS LAYOUT (alt-page4) --- */
+body.alt-page4 .mas-container {
+    display: grid;
+    height: 100vh;
+    gap: 15px;
+    padding: 15px;
+    /* Sidebar + 3 flexible columns for the content */
+    grid-template-columns: 250px 1fr 1fr 1fr;
+    grid-template-rows: 80px 1.5fr 1fr; 
+    grid-template-areas: 
+        "side head head head"
+        "side txt  txt  list"
+        "side op1  op1  op2" 
+        "foot foot foot foot"; /* op1 is wider, spanning 2 columns */
+}
+
+/* Mapping the Torrontés Sections */
+body.alt-page4 .sidebar { grid-area: side; background: #68a5dc; overflow-y: auto; }
+body.alt-page4 .header  { grid-area: head; background: #2c3e50; border-radius: 8px; }
+
+body.alt-page4 .item { 
+    grid-area: txt; 
+    background: #fff; 
+    padding: 25px; 
+    border-radius: 8px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center;
+}
+
+body.alt-page4 .pres { 
+    grid-area: list; 
+    background: #fffbe6; 
+    padding: 20px; 
+    border-radius: 8px; 
+    border-left: 5px solid #68a5dc; 
+}
+
+/* Activity Boxes - Note: op-1 spans twice the space of op-2 */
+body.alt-page4 .op-1 { grid-area: op1; background: #68a5dc; color: white; padding: 20px; border-radius: 8px; }
+body.alt-page4 .op-2 { grid-area: op2; background: #68a5dc; color: white; padding: 20px; border-radius: 8px; }
+
+/* Centering and sizing the hero image */
+body.alt-page4 .item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 1024px) {
+    /* Reset all Grid containers to a single column flow */
+    .mas-container, 
+    body[class*="alt-page"] .mas-container {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important; 
+        gap: 10px;
+    }
+
+    /* Sidebar becomes a top bar on mobile */
+    .sidebar {
+        width: 100% !important;
+        height: auto !important;
+        padding: 10px;
+    }
+
+    /* Header adjustments */
+    .header {
+        height: auto !important;
+        padding: 15px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-group {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Main text and info boxes become full width */
+    .item, .text, .text1, .pres, .vice-pres, .text-1 {
+        width: 100% !important;
+    }
+
+    /* Revert Activity Boxes to vertical stacking on small screens */
+    [class^="op-"] {
+        flex-direction: column !important; 
+    }
+
+    [class^="op-"] img {
+        width: 100% !important;
+        max-width: none;
+        height: 200px !important;
+    }
+}
+
+/* --- FOOTER STYLING --- */
+.main-footer {
+    grid-column: 1 / -1; /* This makes it span across all columns (sidebar included) */
+    background-color: #2c3e50; /* Darker professional blue/grey */
+    color: white;
+    grid-area: foot;
+    padding: 40px 20px 20px 20px;
+    border-radius: 8px 8px 0 0;
+    margin-top: 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-section h4 {
+    color: #68a5dc;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.footer-section a {
+    display: block;
+    color: #bdc3c7;
+    text-decoration: none;
+    margin-bottom: 8px;
+    transition: color 0.3s;
+}
+
+.footer-section a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 12px;
+    color: #7f8c8d;
+}
+
+/* Responsive fix for mobile */
+@media (max-width: 1024px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
