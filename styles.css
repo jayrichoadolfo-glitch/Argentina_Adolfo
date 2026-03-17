@@ -1,9 +1,3 @@
-/* --- SHARED STYLES --- */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Segoe UI', sans-serif; height: 100vh; background: #f4f7f6; }
-
-/* --- THE MASTER GRID (MAIN PAGE) --- */
-/* This only works if you DO NOT have the class "sub-page" on the body */
 body:not(.sub-page) .mas-container {
     display: grid;
     height: 100vh;
@@ -19,8 +13,6 @@ body:not(.sub-page) .mas-container {
         "foot  foot  foot  foot";
 }
 
-/* --- THE REVIEW PAGE GRID --- */
-/* This only works if you HAVE class="sub-page" on the body */
 body.sub-page .mas-container {
     display: grid;
     height: 100vh;
@@ -31,20 +23,16 @@ body.sub-page .mas-container {
     grid-template-areas: 
         "box-1 box-2"
         "box-1 box-9"
-        "foot  foot"; /* box-9 is your review area */
+        "foot  foot";
 }
 
-/* --- AREA ASSIGNMENTS --- */
 .sidebar   { grid-area: box-1; background: #68a5dc; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; align-items: center; }
 .header    { grid-area: box-2; background: #2c3e50; color: #68a5dc; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; border-radius: 8px; }
 
-/* Main page area */
 .text      { grid-area: box-5; background: #fff; padding: 25px; border-radius: 8px; overflow-y: auto; }
 
-/* Review page area (Matches your text1 class) */
 .text1     { grid-area: box-9; background: #fff; padding: 25px; border-radius: 8px; overflow-y: auto; }
 
-/* Other main page boxes */
 .pres { grid-area: box-3; background: #fffbe6; border-radius: 8px; }
 .vice-pres { grid-area: box-4; background: #fffbe6; border-radius: 8px; }
 .op-1 { grid-area: box-6; background: #68a5dc; border-radius: 8px; }
@@ -63,8 +51,8 @@ body.sub-page .mas-container {
 
 .op-1 img, .op-2 img, .op-3 img {
     width: 100%;
-    height: 200px; /* Force a consistent height for all three */
-    object-fit: cover; /* This is the "magic" that prevents stretching */
+    height: 200px; 
+    object-fit: cover; 
     border-radius: 4px;
     margin-bottom: 10px;
 }
@@ -74,7 +62,6 @@ body.sub-page .mas-container {
     line-height: 1.4;
 }
 
-/* --- DROPDOWNS --- */
 .nav-group { display: flex; gap: 10px; }
 .dropdown { position: relative; }
 .button { background: transparent; color: #68a5dc; border: 2px solid #68a5dc; padding: 8px 15px; cursor: pointer; border-radius: 4px; font-weight: bold; }
@@ -83,7 +70,6 @@ body.sub-page .mas-container {
 .dropdown .content a { color: #333; padding: 12px; text-decoration: none; display: block; border-bottom: 1px solid #eee; }
 .dropdown .content a:hover { background: #68a5dc; color: white; }
 
-/* This is the container box (box-9) */
 .text1 { 
     grid-area: box-9; 
     background-color: #68a5dc; /* Your light blue background */
@@ -92,44 +78,39 @@ body.sub-page .mas-container {
     overflow-y: auto; 
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers the white form card */
+    align-items: center;
 }
 
-/* We create a 'Card' for the form so it stands out against the blue */
 .review-form { 
     background: #ffffff; 
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* Adds depth to prevent flatness */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2); 
     display: flex; 
     flex-direction: column; 
     gap: 15px; 
     width: 100%;
-    max-width: 600px; /* Keeps the form at a decent professional width */
+    max-width: 600px; 
 }
 
-/* Making your text readable on the blue background */
 .text1 h2 {
     color: white;
     margin-bottom: 5px;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
-/* This ensures the 'Go Home' link looks identical to the buttons */
 a.button {
-    text-decoration: none;    /* Removes the blue underline */
-    display: inline-block;    /* Allows padding to work correctly */
+    text-decoration: none;    
+    display: inline-block;    
     text-align: center;
-    line-height: 1;           /* Centers text vertically */
+    line-height: 1;           
 }
 
-/* Optional: Special spacing for the Home button if it's in the sidebar */
 .home-btn {
     margin-bottom: 20px;
-    width: 90%;               /* Makes it fit nicely in the sidebar width */
+    width: 90%;               
 }
 
-/* Hover effect to match your other buttons */
 a.button:hover {
     background-color: rgba(104, 165, 220, 0.1); 
     border-color: #2c3e50;
@@ -142,38 +123,33 @@ a.button:hover {
     font-weight: 500;
 }
 
-/* Styling the labels inside the white card */
 .review-form label {
     color: #2c3e50;
     font-weight: bold;
     margin-bottom: -5px;
 }
 
-/* --- RESERVATION PAGE SPECIFIC DESIGN --- */
-
-/* Map the booking-section to the main content area of the sub-page grid */
 body.sub-page .booking-section {
     grid-area: box-9;
-    background-color: #68a5dc; /* Light blue background for the entire area */
+    background-color: #68a5dc; 
+    
     padding: 40px;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers the white cards */
-    gap: 30px; /* Space between the booking card and bucket list card */
+    align-items: center; 
+    gap: 30px; 
 }
 
-/* Style the Reservation and Bucket List as professional white cards */
 .reservation-box, .list-maker {
     background: #ffffff;
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* Adds depth */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2); 
     width: 100%;
-    max-width: 650px; /* Professional standard width */
+    max-width: 650px; 
 }
 
-/* Typography for the cards */
 .reservation-box h3, .list-maker h3 {
     color: #2c3e50;
     margin-bottom: 20px;
@@ -181,7 +157,6 @@ body.sub-page .booking-section {
     padding-bottom: 10px;
 }
 
-/* Form Layout inside the cards */
 .reservation-box form {
     display: flex;
     flex-direction: column;
@@ -194,7 +169,6 @@ body.sub-page .booking-section {
     margin-bottom: -10px;
 }
 
-/* Reusing your professional input styles */
 .reservation-box input, 
 .reservation-box select, 
 .list-maker input {
@@ -205,7 +179,6 @@ body.sub-page .booking-section {
     font-family: inherit;
 }
 
-/* Bucket List Specifics */
 .input-group {
     display: flex;
     gap: 10px;
@@ -243,15 +216,12 @@ body.sub-page .booking-section {
     background: #eee;
 }
 
-/* --- THE THIRD LAYOUT (Drawing Version) --- */
 body.alt-page .mas-container {
     display: grid;
     height: 100vh;
     gap: 12px;
     padding: 12px;
-    /* Sidebar is 250px, then 3 equal columns for the middle content */
     grid-template-columns: 250px 1fr 1fr 1fr;
-    /* Fixed Header height, flexible middle, slightly larger bottom text area */
     grid-template-rows: 100px 1fr 1.2fr; 
     grid-template-areas: 
         "side head head head"
@@ -260,16 +230,13 @@ body.alt-page .mas-container {
         "foot foot foot foot";
 }
 
-/* Mapping the classes to the new Drawing Grid */
 body.alt-page .sidebar { grid-area: side; }
 body.alt-page .header  { grid-area: head; }
 
-/* The 3 Middle Boxes (op-1, op-2, op-3) */
 body.alt-page .op-1    { grid-area: op1; background: #68a5dc; color: white; padding: 15px; border-radius: 8px; }
 body.alt-page .op-2    { grid-area: op2; background: #68a5dc; color: white; padding: 15px; border-radius: 8px; }
 body.alt-page .op-3    { grid-area: op3; background: #68a5dc; color: white; padding: 15px; border-radius: 8px; }
 
-/* The Wide Bottom Text Area (text-1) */
 body.alt-page .text-1  { 
     grid-area: txt; 
     background: #fffbe6; 
@@ -278,7 +245,6 @@ body.alt-page .text-1  {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* --- THE THIRD LAYOUT (Specific for Glacier/Iguazú) --- */
 body.alt-page1 .mas-container {
     display: grid;
     height: 100vh;
@@ -294,15 +260,13 @@ body.alt-page1 .mas-container {
         "foot foot foot foot";
 }
 
-/* Assignments */
 body.alt-page1 .sidebar { grid-area: side; background: #68a5dc;}
 body.alt-page1 .header  { grid-area: head; background: #2c3e50; display: flex; align-items: center; padding: 0 20px; border-radius: 8px; }
 body.alt-page1 .text-1  { grid-area: txt;  background: #fff; padding: 25px; border-radius: 8px;}
 
-/* The Floating Alert Box (Pre-Visit List) */
 body.alt-page1 .pres {
     grid-area: list;
-    background: #fffbe6; /* Professional "Warning/Tip" yellow */
+    background: #fffbe6;
     border-left: 5px solid #2c3e50;
     padding: 20px;
     border-radius: 8px;
@@ -310,12 +274,10 @@ body.alt-page1 .pres {
     font-size: 0.9rem;
 }
 
-/* The 3 Activity Boxes */
 body.alt-page1 .op-1 { grid-area: op1; background: #68a5dc; padding: 15px; border-radius: 8px; }
 body.alt-page1 .op-2 { grid-area: op2; background: #68a5dc; padding: 15px; border-radius: 8px; }
 body.alt-page1 .op-3 { grid-area: op3; background: #68a5dc; padding: 15px; border-radius: 8px; }
 
-/* Image styling for activities */
 body.alt-page1 [class^="op-"] img {
     width: 100%;
     height: 130px;
