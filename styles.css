@@ -46,6 +46,7 @@ body.sub-page .mas-container {
     display: flex;
     flex-direction: column;
     height: 100%; /* Makes them all the same height */
+    width: 100%;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
